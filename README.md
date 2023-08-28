@@ -16,6 +16,7 @@ In its finished state, it should include:
 
 ## Referenced Resources
 ### Graphical Physics Engine
-- https://www.youtube.com/watch?v=2SuvO4Gi7uY&t=706s
+https://youtu.be/ih20l3pJoeU?list=PLrOv9FMX8xJE8NgepZR1etrsU63fDDGxO (from 16:01-29:51)
 ### Wave Function Collapse
+- https://www.youtube.com/watch?v=2SuvO4Gi7uY&t=706s
 - https://github.com/mxgmn/WaveFunctionCollapse
