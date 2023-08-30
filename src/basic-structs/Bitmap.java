@@ -1,12 +1,12 @@
 public class Bitmap {
 	private int[] pixels;
-	private int width;
+	private int length, height, width;
 
-	public static Bitmap make(int[] pixels, int width) { return pixels.length % width != 0 ? null : new Bitmap(pixels, width); }
-	public Bitmap(int[] pixels, int width) { this.pixels = pixels; this.width = width; };
+	public static Bitmap make(int[] pixels, int height, int width) { return height * width == pixels.length ? null : new Bitmap(pixels, width); }
+	public Bitmap(int[] pixels, int width) { this.pixels = pixels; this.length = pixels.length; this.height = height; this.width = width; };
 
 	public int pixel(int n) { return pixels[n]; }
+	public int length() { return length; }
 	public int width() { return width; }
-	public int height() { return pixels.length / width; }
-	public int length() { return pixels.length; }
+	public int height() { return height; }
 }
