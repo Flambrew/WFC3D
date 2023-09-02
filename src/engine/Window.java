@@ -1,3 +1,6 @@
+import java.awt.Component;
+
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Window extends JPanel {
@@ -17,5 +20,17 @@ public class Window extends JPanel {
 
 		public int y() { return y; }
 	}
-	
+
+	private JFrame window;
+
+	public Window(Resolution resolution) { this(resolution, null); }
+
+	public Window(Resolution resolution, Component relativeComponent) {
+		window = new JFrame();
+		window.getContentPane().add(this);
+		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		window.setSize(resolution.x, resolution.y);
+		window.setLocationRelativeTo(relativeComponent);
+		window.setVisible(true);
+	}
 }
