@@ -12,7 +12,7 @@ In its finished state, it should include:
 
 ## Source Projects
 - https://github.com/Flambrew/PhysicSim
-- https://github.com/Flambrew/Wave-Function-Collapse
+- https://github.com/Flambrew/WaveFunctionCollapse
 
 ## Referenced Resources
 ### Graphical Physics Engine
