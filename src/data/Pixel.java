@@ -3,9 +3,11 @@
  * Alpha should represent transparency, not opacity
  */
 public class Pixel {
+	public static final int BLUE = 0xFF, GREEN = 0xFF00, RED = 0xFF0000, CYAN = 0xFFFF, MAGENTA = 0xFF00FF, YELLOW = 0xFFFF00;
+
 	private Pixel() {}
 
-	public static int alpha(int argb) { return (rgb >> 24) & 0xFF; }
+	public static int alpha(int argb) { return (argb >> 24) & 0xFF; }
 	public static int red(int rgb) { return (rgb >> 16) & 0xFF; }
 	public static int green(int rgb) { return (rgb >> 8) & 0xFF; }
 	public static int blue(int rgb) { return (rgb) & 0xFF; }

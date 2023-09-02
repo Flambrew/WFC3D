@@ -4,7 +4,7 @@ public class Voxel {
 	private Bitmap[] sides = new Bitmap[6];
 
 	public static Voxel make(Bitmap[] sides) { 
-		return sides.length != 6 ? null : new Bitmap(sides); 
+		return sides.length != 6 ? null : new Voxel(sides); 
 	}
 	
 	private Voxel(Bitmap[] sides) { this.sides = sides; }
