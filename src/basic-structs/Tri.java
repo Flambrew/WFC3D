@@ -8,18 +8,21 @@ public class Tri {
 	}
 
 	public void a(Vector3 a) {
-		if (a != null)
+		if (a != null) {
 			this.a = a;
+		}
 	}
 
 	public void b(Vector3 b) {
-		if (b != null)
+		if (b != null) {
 			this.b = b;
+		}
 	}
 
 	public void c(Vector3 c) {
-		if (c != null)
+		if (c != null) {
 			this.c = c;
+		}
 	}
 
 	public Vector3 a() { return a; }

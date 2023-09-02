@@ -10,7 +10,7 @@ public class Angle {
 	private Angle(double angle, int format) {
 		if (format == DEG) {
 			degrees = angle;
-		} else if (format == RAD) {
+		} else {
 			degrees = Math.toDegrees(angle);
 		}
 	}

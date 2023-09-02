@@ -1,9 +1,7 @@
 public abstract class Engine extends Thread {
-	private int framesPerSecond, currentFrame;
 	private double millisecondsPerFrame, lastFrameMillis;
 
 	public Engine(int framesPerSecond) {
-		this.framesPerSecond = framesPerSecond;
 		this.millisecondsPerFrame = 1000. / framesPerSecond;
 	}
 
@@ -16,8 +14,6 @@ public abstract class Engine extends Thread {
 
 			if (System.currentTimeMillis() - lastFrameMillis > millisecondsPerFrame) {
 				lastFrameMillis += millisecondsPerFrame;
-				currentFrame += 1;
-
 				fixedupdate();
 			}
 		}
