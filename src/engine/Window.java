@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Component;
 
 import javax.swing.JFrame;
@@ -26,6 +27,7 @@ public class Window extends JPanel {
 	public Window(Resolution resolution) { this(resolution, null); }
 
 	public Window(Resolution resolution, Component relativeComponent) {
+		setBackground(Color.BLACK);
 		window = new JFrame();
 		window.getContentPane().add(this);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
