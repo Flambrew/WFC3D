@@ -34,5 +34,6 @@ public class Window extends JPanel {
 		window.setSize(resolution.x, resolution.y);
 		window.setLocationRelativeTo(relativeComponent);
 		window.setVisible(true);
+		
 	}
 }
