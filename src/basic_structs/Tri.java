@@ -1,4 +1,6 @@
-package basic_structs;
+package src.basic_structs;
+
+import src.data.Vector3;
 
 public class Tri {
 	public Vector3 a, b, c;

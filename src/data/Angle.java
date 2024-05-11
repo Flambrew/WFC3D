@@ -1,4 +1,4 @@
-package data;
+package src.data;
 
 public class Angle {
 

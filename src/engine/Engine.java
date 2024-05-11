@@ -1,4 +1,4 @@
-package engine;
+package src.engine;
 
 public abstract class Engine extends Thread {
 	private long nanosPerFrame, prevFrameNanos, firstFrameNanos;

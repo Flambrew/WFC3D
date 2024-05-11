@@ -1,4 +1,4 @@
-package basic_structs;
+package src.basic_structs;
 
 import java.awt.Graphics;
 

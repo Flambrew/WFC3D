@@ -1,4 +1,4 @@
-package engine;
+package src.engine;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -6,6 +6,9 @@ import java.awt.Graphics;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import basic_structs.Scene;
+import data.Resolution;
 
 public class Window extends JPanel {
 	private final JFrame window;

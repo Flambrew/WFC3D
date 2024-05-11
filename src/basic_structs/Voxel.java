@@ -1,4 +1,4 @@
-package basic_structs;
+package src.basic_structs;
 
 public class Voxel {
 	public final int TOP = 0, NORTH = 1, EAST = 2, SOUTH = 3, WEST = 4, BOTTOM = 5;
