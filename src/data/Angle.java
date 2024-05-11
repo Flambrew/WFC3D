@@ -1,28 +1,26 @@
 public class Angle {
-	public enum Format {
-		DEG, RAD;
+
+	public double deg;
+
+	public static Angle make(double angle) {
+		return new Angle(angle, true);
 	}
 
-	private double degrees;
-
-	/** Use Angle.DEG and Angle.RAD for format. */
-	public static Angle make(double angle, Format format) {
-		return format == Format.DEG || format == Format.RAD ? new Angle(angle, format) : null;
+	public static Angle makeRad(double angle) {
+		return new Angle(angle, false);
 	}
 
-	private Angle(double angle, Format format) {
-		if (format == Format.DEG) {
-			degrees = angle;
-		} else {
-			degrees = Math.toDegrees(angle);
-		}
+	private Angle(double angle, boolean deg) {
+		this.deg = deg 
+			? angle
+			: Math.toDegrees(angle);
 	}
 
-	public double deg() { return degrees; }
+	public double rad() {
+		return Math.toRadians(deg);
+	}
 
-	public double rad() { return Math.toRadians(degrees); }
-
-	public void deg(double angle) { degrees = angle; }
-
-	public void rad(double angle) { degrees = Math.toDegrees(angle); }
+	public void rad(double angle) {
+		deg = Math.toDegrees(angle);
+	}
 }

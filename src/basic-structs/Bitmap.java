@@ -1,23 +1,32 @@
 import java.awt.Color;
 
 public class Bitmap {
-	private Color[] pixels;
-	private int length, height, width;
+	public final int length, height, width;
+	private final Color[] pixels;
 
-	public static Bitmap make(Color[] pixels, int height, int width) { return height * width == pixels.length ? null : new Bitmap(pixels, height, width); }
+	/** return null if invalid */
+	public static Bitmap make(final Color[] pixels, final int height, final int width) {
+		return height * width == pixels.length
+				? new Bitmap(pixels, height, width)
+				: null;
+	}
 
-	public Bitmap(Color[] pixels, int height, int width) {
+	private Bitmap(final Color[] pixels, final int height, final int width) {
 		this.pixels = pixels;
 		this.length = pixels.length;
 		this.height = height;
 		this.width = width;
 	};
 
-	public Color pixel(int n) { return pixels[n]; }
+	/** return null if invalid */
+	public Color pixel(final int n) {
+		return n < pixels.length
+				? pixels[n]
+				: null;
+	}
 
-	public int length() { return length; }
-
-	public int width() { return width; }
-
-	public int height() { return height; }
+	/** return null if invalid */
+	public Color pixel(final int x, final int y) {
+		return pixel(y * width + x);
+	}
 }
