@@ -1,32 +1,42 @@
+package engine;
+
 public abstract class Engine extends Thread {
-	private double millisPerFrame, lastFrameMillis;
+	private long nanosPerFrame, prevFrameNanos, firstFrameNanos;
 
-	private Window window;
+	private final Window window;
 
-	public Engine(int framesPerSecond) {
-		this.millisPerFrame = 1000. / framesPerSecond;
+	public Engine(final int framesPerSecond, final Resolution resolution) {
+		this.nanosPerFrame = 1000_000_000 / framesPerSecond;
+		this.window = new Window(resolution);
 		start();
 	}
 
 	public void run() {
 		init();
-		lastFrameMillis = System.currentTimeMillis();
+		firstFrameNanos = prevFrameNanos = System.nanoTime();
 
 		while (true) {
-			frameupdate();
-
-			if (System.currentTimeMillis() - lastFrameMillis > millisPerFrame) {
-				fixedupdate();
-				lastFrameMillis += millisPerFrame;
+			if (System.nanoTime() - prevFrameNanos > nanosPerFrame) {
+				fixedUpdate();
+				prevFrameNanos += nanosPerFrame;
 			}
 
+			frameUpdate();
 			window.repaint();
 		}
 	}
 
+	public long lifetimeMillis() {
+		return (prevFrameNanos - firstFrameNanos) / 1000_000;
+	}
+
+	public Scene setScene(Scene scene) {
+		return window.currentScene = scene;
+	}
+
 	public abstract void init();
 
-	public abstract void frameupdate();
+	public abstract void frameUpdate();
 
-	public abstract void fixedupdate();
+	public abstract void fixedUpdate();
 }

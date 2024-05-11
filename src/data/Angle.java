@@ -1,3 +1,5 @@
+package data;
+
 public class Angle {
 
 	public double deg;

@@ -1,3 +1,5 @@
+package basic_structs;
+
 public class Tri {
 	public Vector3 a, b, c;
 
