@@ -1,5 +1,8 @@
 package src.engine;
 
+import src.basic_structs.Scene;
+import src.data.Resolution;
+
 public abstract class Engine extends Thread {
 	private long nanosPerFrame, prevFrameNanos, firstFrameNanos;
 
@@ -30,7 +33,7 @@ public abstract class Engine extends Thread {
 		return (prevFrameNanos - firstFrameNanos) / 1000_000;
 	}
 
-	public Scene setScene(Scene scene) {
+	public Scene setScene(final Scene scene) {
 		return window.currentScene = scene;
 	}
 

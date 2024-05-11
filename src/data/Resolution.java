@@ -5,8 +5,12 @@ public enum Resolution {
 
     public final int x, y;
 
-    private Resolution(int x, int y) {
+    private Resolution(final int x, final int y) {
         this.x = x;
         this.y = y;
+    }
+
+    public double aspectRatio() {
+        return (double) y / x;
     }
 }

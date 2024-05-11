@@ -3,6 +3,9 @@ package src.basic_structs;
 import java.awt.Color;
 
 public class Bitmap {
+
+	//TODO: place origin at bitmap center
+
 	public final int length, height, width;
 	private final Color[] pixels;
 

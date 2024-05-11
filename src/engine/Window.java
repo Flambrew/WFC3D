@@ -7,16 +7,16 @@ import java.awt.Graphics;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import basic_structs.Scene;
-import data.Resolution;
+import src.basic_structs.Scene;
+import src.data.Resolution;
 
 public class Window extends JPanel {
 	private final JFrame window;
 	public Scene currentScene;
 
-	public Window(Resolution resolution) { this(resolution, null); }
+	public Window(final Resolution resolution) { this(resolution, null); }
 
-	public Window(Resolution resolution, Component relativeComponent) {
+	public Window(final Resolution resolution, final Component relativeComponent) {
 		setBackground(Color.BLACK);
 		window = new JFrame();
 		window.getContentPane().add(this);
@@ -26,7 +26,7 @@ public class Window extends JPanel {
 		window.setVisible(true);
 	}
 
-	public void paintComponent(Graphics g) {
+	public void paintComponent(final Graphics g) {
 		super.paintComponent(g);	
 		currentScene.paint(g);
 	}

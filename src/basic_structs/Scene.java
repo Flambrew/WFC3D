@@ -5,7 +5,7 @@ import java.awt.Graphics;
 public class Scene {
     
 
-    public void paint(Graphics g) {
+    public void paint(final Graphics g) {
 
     }
 }

@@ -6,13 +6,13 @@ public class Voxel {
 	private final Bitmap[] sides;
 
 	/** return null if invalid */
-	public static Voxel make(Bitmap[] sides) {
+	public static Voxel make(final Bitmap[] sides) {
 		return sides.length == 6
 				? new Voxel(sides)
 				: null;
 	}
 
-	private Voxel(Bitmap[] sides) {
+	private Voxel(final Bitmap[] sides) {
 		this.sides = sides;
 	}
 }
