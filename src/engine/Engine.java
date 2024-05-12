@@ -1,20 +1,23 @@
 package src.engine;
 
-import src.basic_structs.Scene;
 import src.data.Resolution;
+import src.structs.Camera;
+import src.structs.Scene;
 
 public abstract class Engine extends Thread {
 	private long nanosPerFrame, prevFrameNanos, firstFrameNanos;
 
-	private final Window window;
+	public final Window window;
+	public final Input input;
 
 	public Engine(final int framesPerSecond, final Resolution resolution) {
 		this.nanosPerFrame = 1000_000_000 / framesPerSecond;
-		this.window = new Window(resolution);
+		this.window = new Window(resolution, input = new Input());
+
 		start();
 	}
 
-	public void run() {
+	public final void run() {
 		init();
 		firstFrameNanos = prevFrameNanos = System.nanoTime();
 
@@ -22,6 +25,7 @@ public abstract class Engine extends Thread {
 			if (System.nanoTime() - prevFrameNanos > nanosPerFrame) {
 				fixedUpdate();
 				prevFrameNanos += nanosPerFrame;
+				window.input.update();
 			}
 
 			frameUpdate();
@@ -29,12 +33,16 @@ public abstract class Engine extends Thread {
 		}
 	}
 
-	public long lifetimeMillis() {
+	public final long lifetimeMillis() {
 		return (prevFrameNanos - firstFrameNanos) / 1000_000;
 	}
 
-	public Scene setScene(final Scene scene) {
+	public final Scene setScene(final Scene scene) {
 		return window.currentScene = scene;
+	}
+
+	public final Camera setCamera(final Camera camera) {
+		return window.camera = camera;
 	}
 
 	public abstract void init();

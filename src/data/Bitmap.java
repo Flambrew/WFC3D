@@ -1,4 +1,4 @@
-package src.basic_structs;
+package src.data;
 
 import java.awt.Color;
 

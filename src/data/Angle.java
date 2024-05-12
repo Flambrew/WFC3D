@@ -4,12 +4,12 @@ public class Angle {
 
 	public double deg;
 
-	public static Angle make(final double angle) {
-		return new Angle(angle, true);
+	public static Angle make(final double deg) {
+		return new Angle(deg, true);
 	}
 
-	public static Angle makeRad(final double angle) {
-		return new Angle(angle, false);
+	public static Angle makeRad(final double rad) {
+		return new Angle(rad, false);
 	}
 
 	private Angle(final double angle, final boolean deg) {
