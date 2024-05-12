@@ -20,9 +20,9 @@ public class Triangle implements Renderable {
 	private Color color = new Color(col, col, col);
 
 	public void paint(final Graphics g, final Camera cam, final Resolution res) {
-		Vector3 a = this.a.sub(cam.transform);
-		Vector3 b = this.b.sub(cam.transform);
-		Vector3 c = this.c.sub(cam.transform);
+		Vector3 a = this.a.sub(cam.transform).rotate(cam.rotation.negate());
+		Vector3 b = this.b.sub(cam.transform).rotate(cam.rotation.negate());
+		Vector3 c = this.c.sub(cam.transform).rotate(cam.rotation.negate());
 
 		if (a.z < cam.zSelf && b.z < cam.zSelf
 				|| a.z < cam.zSelf && c.z < cam.zSelf

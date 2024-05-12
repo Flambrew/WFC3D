@@ -12,50 +12,60 @@ import src.structs.Triangle;
 
 public class Client extends Engine {
 
+    private Resolution res;
+    private Camera camera;
+    private Scene scene;
+
     public Client(int framesPerSecond, Resolution res) {
         super(framesPerSecond, res);
         this.res = res;
     }
 
-    private Resolution res;
-    private Camera camera;
-    private Scene scene;
-
     public void init() {
         setCamera(camera = new Camera());
         setScene(scene = new Scene());
 
-        addcube();
+        scene.add(cube());
     }
 
     public void frameUpdate() {
-
     }
 
     public void fixedUpdate() {
-        if (input.held.contains(KeyEvent.VK_A)) {
-            camera.transform.x -= .1; // TODO: actually write this well
-        }
-        if (input.held.contains(KeyEvent.VK_D)) {
-            camera.transform.x += .1; // TODO: actually write this well
-        }
-        if (input.held.contains(KeyEvent.VK_S)) {
-            camera.transform.z -= .1; // TODO: actually write this well
-        }
-        if (input.held.contains(KeyEvent.VK_W)) {
-            camera.transform.z += .1; // TODO: actually write this well
-        }
-        if (input.held.contains(KeyEvent.VK_SPACE)) {
-            camera.transform.y -= .1; // TODO: actually write this well
-        }
-        if (input.held.contains(KeyEvent.VK_CONTROL)) {
-            camera.transform.y += .1; // TODO: actually write this well
+        movement();
+        rotation();
+    }
+
+    /* -----=====----- Random Crap -----=====----- */
+
+    private Vector3 bodyAcceleration = new Vector3();
+    private double walk = 1, back = .6, strafe = .8, lift = .7;
+    public void movement() {
+        if (input.held.contains(KeyEvent.VK_A)) bodyAcceleration.x -= strafe;
+        if (input.held.contains(KeyEvent.VK_D)) bodyAcceleration.x += strafe;
+        if (input.held.contains(KeyEvent.VK_S)) bodyAcceleration.z -= back;
+        if (input.held.contains(KeyEvent.VK_W)) bodyAcceleration.z += walk;
+        if (input.held.contains(KeyEvent.VK_SPACE)) bodyAcceleration.y -= lift;
+        if (input.held.contains(KeyEvent.VK_CONTROL)) bodyAcceleration.y += lift;
+
+        if (!bodyAcceleration.zero()) {
+            camera.transform.assign(camera.transform.add(bodyAcceleration.clamp(100).scale(0.01)));
+            bodyAcceleration.assign(bodyAcceleration.scale(0.95));
         }
     }
 
-    /* ----- Random Crap ----- */
+    private double camAcceleration = 0;
+    public void rotation() {
+        camAcceleration -= input.mousePos().x;
+        input.centerMouse();
 
-    void addcube() {
+        if (Math.abs(camAcceleration) >= 0.001) {
+            camera.rotation.add(camAcceleration * 0.01);
+            camAcceleration *= 0.90;
+        }
+    }
+
+    public Mesh cube() {
         Mesh cube = new Mesh();
 
         Vector3 a = new Vector3(-1, -1, 5);
@@ -85,6 +95,6 @@ public class Client extends Engine {
         cube.add(new Triangle(e, h, d));
         cube.add(new Triangle(e, d, a));
 
-        scene.add(cube);
+        return cube;
     }
 }

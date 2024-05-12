@@ -15,6 +15,12 @@ public class Vector3 {
 		this.z = z;
 	}
 
+	public void assign(final Vector3 vec) {
+		x = vec.x;
+		y = vec.y;
+		z = vec.z;
+	}
+
 	public Vector3 add(final Vector3 vec) {
 		return new Vector3(x + vec.x, y + vec.y, z + vec.z);
 	}
@@ -25,6 +31,14 @@ public class Vector3 {
 
 	public double len() {
 		return Math.sqrt(x * x + y * y + z * z);
+	}
+
+	public boolean one() {
+		return Math.abs(x - 1) < 0.001 && Math.abs(y - 1) < 0.001 && Math.abs(z - 1) < 0.001;
+	}
+
+	public boolean zero() {
+		return Math.abs(x) < 0.001 && Math.abs(y) < 0.001 && Math.abs(z) < 0.001;
 	}
 
 	public Vector3 norm() {
@@ -38,6 +52,17 @@ public class Vector3 {
 
 	public Vector3 scale(final double val) {
 		return new Vector3(x * val, y * val, z * val);
+	}
+
+	public Vector3 clamp(final double val) {
+		if (len() < val) 
+			return new Vector3(x, y, z);
+		double clampLen = len() / val;
+		return new Vector3(x / clampLen, y / clampLen, z / clampLen);
+	}
+
+	public Vector3 rotate(final Angle angle) {
+		return new Vector3(x * Math.cos(angle.rad()) - z * Math.sin(angle.rad()), y, x * Math.sin(angle.rad()) + z * Math.cos(angle.rad()));
 	}
 
 	public Vector3 dotProd(final Vector3 vec) {

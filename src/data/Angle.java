@@ -25,4 +25,18 @@ public class Angle {
 	public void rad(final double angle) {
 		deg = Math.toDegrees(angle);
 	}
+
+	public void add(final double deg) {
+		this.deg += deg;
+		this.deg = this.deg % 360;
+	}
+
+	public void addRad(final double rad) {
+		this.deg += Math.toDegrees(rad);
+		this.deg = this.deg % 360;
+	}
+
+	public Angle negate() {
+		return new Angle(-deg, true);
+	}
 }

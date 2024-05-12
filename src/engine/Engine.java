@@ -13,6 +13,7 @@ public abstract class Engine extends Thread {
 	public Engine(final int framesPerSecond, final Resolution resolution) {
 		this.nanosPerFrame = 1000_000_000 / framesPerSecond;
 		this.window = new Window(resolution, input = new Input());
+		input.setWindow(window);
 
 		start();
 	}
